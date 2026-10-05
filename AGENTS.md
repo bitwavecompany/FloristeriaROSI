@@ -7,8 +7,8 @@
 
 ## 1. Overview
 
-This repository contains the source code for the **Floristeria Rosi** web application, built with the Astro framework.
-AI agents act in the role of **co-developers**: they implement new features, create UI components, manage routing, and improve styling using Tailwind CSS.
+AI agents working in this repository act as **co-developers**: implementing new features, creating UI components, and managing the Astro framework. 
+> For the complete Tech Stack, Architecture, and Business Logic (The Lookbook concept), always read `README.md` first. Do not duplicate that information here.
 
 ---
 
@@ -25,26 +25,7 @@ astro dev --background
 astro dev status
 astro dev stop
 astro dev logs
-
-# Standard npm scripts
-npm run dev
-npm run build
-npm run preview
 ```
-
----
-
-## 3. Technologies and Versions
-
-| Package                     | Purpose                                  |
-| --------------------------- | ---------------------------------------- |
-| `astro`                     | Core web framework                       |
-| `tailwindcss`               | Utility-first CSS framework              |
-| `typescript`                | Static typing                            |
-| `@astrojs/partytown`        | Off-thread analytics execution           |
-| `@jdevalk/astro-seo-graph`  | Strict SEO, metadata and JSON-LD graph   |
-
-_(Refer to `package.json` for exact active dependency versions)_
 
 ---
 

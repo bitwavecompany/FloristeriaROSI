@@ -1,87 +1,144 @@
-# Floristeria Rosi
+<div align="center">
+  <h1>🌸 Floristería ROSI</h1>
+  <p><strong>The Digital Lookbook for the Best Local Florist</strong></p>
 
-This repository hosts the source code for the **Floristeria Rosi** web application. It is a modern web project built with the [Astro](https://astro.build/) framework and Tailwind CSS.
-
-### 🌸 Project Concept: The Digital Lookbook
-Floristeria ROSI is a local florist specializing in natural flowers, "eternal" flowers (handmade), and special arrangements (plushies, chocolates). The website is designed as a **visual lookbook/catalog**.
-- **No e-commerce checkout or pricing:** All call-to-actions drive the user directly to WhatsApp with pre-filled messages.
-- **Image-driven:** Heavy reliance on high-quality photography, structured via categories (`naturales`, `eternas`, `especiales`).
-
----
-
-## Prerequisites
-
-| Tool    | Version                |
-| ------- | ---------------------- |
-| Node.js | ≥ 18 (LTS recommended) |
-| npm     | bundled with Node.js   |
+  <!-- Badges -->
+  <p>
+    <img src="https://img.shields.io/badge/Astro-5.x-FF5D01?style=for-the-badge&logo=astro&logoColor=white" alt="Astro" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
+    <img src="https://img.shields.io/badge/SEO-100%25-00C7B7?style=for-the-badge" alt="SEO Optimized" />
+  </p>
+</div>
 
 ---
 
-## Installation
+## 📋 Table of Contents
 
-```bash
-npm install
-```
-
----
-
-## Running the Application
-
-All commands are run from the root of the project, using a terminal.
-
-### 💻 Development Commands
-| Command                    | Action                                                    |
-| -------------------------- | --------------------------------------------------------- |
-| `npm run dev`              | Starts local dev server at `localhost:4321`               |
-| `npm run preview`          | Previews your build locally, before deploying             |
-| `npm run graphify:rebuild` | Analyzes and generates a codebase graph map for AI agents |
-
-### 🛡️ Quality Pipeline (Auditing & Building)
-| Command                    | Action                                                                   |
-| -------------------------- | ------------------------------------------------------------------------ |
-| `npm run format`           | Formats all code using Prettier (including Tailwind class sorting)       |
-| `npm run lint`             | Checks code quality, logic errors, and accessibility using ESLint        |
-| `npm run typecheck`        | Strictly verifies TypeScript and Astro props using `astro check`         |
-| `npm run audit:security`   | Scans NPM dependencies for known security vulnerabilities                |
-| **`npm run build:strict`** | **The ultimate command**: Runs typecheck, lint, and builds for production|
+1. [About the Project](#-about-the-project)
+2. [Key Features](#-key-features)
+3. [Tech Stack](#-tech-stack)
+4. [Project Structure](#-project-structure)
+5. [Quick Start](#-quick-start)
+6. [Available Scripts](#-available-scripts)
+7. [SEO & Analytics](#-seo--analytics)
+8. [Deployment](#-deployment)
 
 ---
 
-## Project Structure
+## 📖 About the Project
+
+**Floristería ROSI** is a modern web application designed as a **Digital Lookbook/Catalog**. It showcases natural flower arrangements, eternal (handmade) bouquets, and special gifts in a highly visual way. The site intentionally omits a traditional e-commerce checkout. Instead, all call-to-actions (CTAs) redirect users directly to **WhatsApp** with pre-filled messages, ensuring immediate and personalized customer service.
+
+---
+
+## ✨ Key Features
+
+- **Extreme Speed (Zero-JS):** Built using Astro's Islands Architecture. Ships zero blocking JavaScript to the client by default.
+- **Direct WhatsApp Funnel:** Products are linked directly to WhatsApp chats, optimizing local sales conversions.
+- **Visual Performance:** On-the-fly optimized and responsive images via Astro's `<Image />` component.
+- **Built-in Local SEO:** Injects `LocalBusiness` and `Florist` JSON-LD schemas to dominate Google Maps and local search results.
+- **Off-Thread Analytics:** Google Analytics (GA4) runs entirely in a Web Worker using *Partytown*, tracking metrics without impacting page load times.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** [Astro](https://astro.build/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Typing:** [TypeScript](https://www.typescriptlang.org/)
+- **Icons:** [Astro Icon](https://github.com/natemoo-re/astro-icon) (Lucide & MDI)
+- **Animations:** [Motion](https://motion.dev/)
+- **SEO & Graph:** [@jdevalk/astro-seo-graph](https://github.com/jdevalk/seo-graph)
+- **Analytics:** [@astrojs/partytown](https://partytown.builder.io/)
+
+---
+
+## 📂 Project Structure
+
+Astro relies on file-based routing. Here is the core topology:
 
 ```text
 /
-├── .agents/          ← Agent-specific context and skills
-├── public/           ← Static assets (favicons, og-image.webp, robots.txt)
+├── .agents/          ← AI Agent context rules (AGENTS.md)
+├── public/           ← Static assets (robots.txt, og-image.webp, favicons)
 ├── src/
-│   ├── assets/       ← Processed assets (optimized by Astro)
-│   │   ├── branding/ ← Logos and brand identity
-│   │   ├── catalog/  ← Product photos divided by category
-│   │   └── ui/       ← UI backgrounds and hero images
-│   ├── components/   ← Reusable Astro components
-│   ├── layouts/      ← Page layouts (includes SEO, JSON-LD and GA)
-│   └── pages/        ← File-based routing (index.astro, 404.astro)
+│   ├── assets/       ← Source images optimized automatically by Astro
+│   ├── components/   ← Reusable Astro UI blocks
+│   ├── layouts/      ← Master templates (handles <head>, SEO, and Analytics)
+│   └── pages/        ← Application routes (index.astro, 404.astro)
 ├── AGENTS.md         ← Repo-wide AI agent rules and conventions
-├── astro.config.ts   ← Astro framework configuration (TypeScript)
-├── eslint.config.mjs ← ESLint flat configuration
-├── tailwind.config.ts ← Tailwind CSS configuration
-├── package.json      ← Project dependencies and scripts
-└── README.md         ← Project overview and setup (this file)
+├── astro.config.ts   ← Framework configuration and integrations
+└── tailwind.config.ts ← Tailwind CSS design tokens
 ```
 
 ---
 
-## 🚀 Deployment (Vercel)
+## 🚀 Quick Start
 
-This project is configured to be easily deployed on **Vercel**. 
-1. Import the repository into your Vercel dashboard.
-2. Vercel will automatically detect the Astro framework and build settings.
-3. **Important:** Once deployed, update the `site` URL in `astro.config.ts` to match your Vercel domain (e.g., `https://floristeria-rosi.vercel.app`) to ensure your Sitemap and Open Graph images work correctly.
+### Prerequisites
+
+- **Node.js:** Version 18.0 or higher.
+- **Package Manager:** npm, pnpm, or yarn.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bitwavecompany/FloristeriaROSI.git
+   cd FloristeriaROSI
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+   *(Note: The project uses an `.npmrc` file with `legacy-peer-deps=true` to automatically resolve strict Astro/Tailwind peer dependency constraints).*
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   > Visit `http://localhost:4321` to view the app live.
+
+---
+
+## 💻 Available Scripts
+
+This project enforces a strict quality pipeline to ensure code integrity before deployment.
+
+| Command                    | Description                                                                 |
+| -------------------------- | --------------------------------------------------------------------------- |
+| `npm run dev`              | Starts the local dev server with Hot Module Replacement (HMR).              |
+| `npm run preview`          | Serves the compiled build locally to preview the final result.              |
+| `npm run format`           | Formats codebase and sorts Tailwind classes using Prettier.                 |
+| `npm run lint`             | Scans code for bad practices and syntax errors using ESLint.                |
+| `npm run typecheck`        | Strictly verifies TypeScript and Astro component props.                     |
+| **`npm run build:strict`** | **Recommended before deploy.** Runs lint, typecheck, and final build.       |
 
 ---
 
 ## 📈 SEO & Analytics
 
-- **SEO:** Handled by `@jdevalk/astro-seo-graph`. A `LocalBusiness`/`Florist` JSON-LD schema is injected into the `<head>` to boost local search rankings on Google Maps. Open Graph meta tags and a default `og-image.webp` are configured for social media and WhatsApp sharing.
-- **Analytics:** Google Analytics (GA4) is integrated via **Partytown** (`@astrojs/partytown`). The script is loaded in a web worker off the main thread, ensuring a `100/100` performance score. Replace the `G-XXXXXXXXXX` placeholder in `src/layouts/Layout.astro` with your actual tracking ID.
+### Technical SEO
+The site achieves a **100/100 SEO score** through:
+- **`Layout.astro`** dynamically injecting `Florist` JSON-LD schema with address, phone numbers, and operating hours for the Google Local Pack.
+- Automatic Open Graph (`og:image`) and Twitter Cards metadata pointing to `public/og-image.webp` for rich social media sharing.
+- Strict compile-time validation via `astro-seo-graph` (ensuring unique H1s, internal link integrity, and alt texts).
+
+### Analytics (Google Analytics)
+Tracking is handled securely without blocking the main thread:
+1. Powered by **Partytown**.
+2. To update the tracking ID, open `src/layouts/Layout.astro`.
+3. Locate the `<script type="text/partytown">` tag and replace `G-XXXXXXXXXX` with your official Measurement ID.
+
+---
+
+## ☁️ Deployment
+
+This repository is pre-configured for frictionless deployment on **Vercel**.
+
+1. Import the repository into your Vercel dashboard.
+2. Vercel will automatically detect the Astro framework and install dependencies.
+3. **Post-Deployment Step:** If you connect a custom domain in the future, remember to update the `site` property inside `astro.config.ts` so that your `robots.txt` and sitemaps resolve correctly.
