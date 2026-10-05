@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section class="w-full bg-white/30 backdrop-blur-lg border-y border-white/50 py-8 md:py-10 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <!-- Left: Icon and Text -->
+    <div class="flex items-center gap-6">
+      <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
+        <Icon name="lucide:heart" class="w-6 h-6 text-accent" />
+      </div>
+      <div>
+        <h3 class="text-light-wisteria-950 font-bold text-lg sm:text-xl uppercase tracking-wide font-sans">
+          ¿Buscas algo especial?
+        </h3>
+        <p class="text-light-wisteria-700 text-sm sm:text-base mt-1">
+          Dinos qué necesitas y diseñaremos algo único para ti.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right: Button -->
+    <div class="flex-shrink-0 mt-4 md:mt-0">
+      <a
+        href="https://wa.me/593999636096?text=Hola,%20quisiera%20solicitar%20un%20pedido%20personalizado."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-8 py-3 bg-light-wisteria-950 hover:bg-light-wisteria-900 text-white text-sm font-semibold rounded-full transition-colors"
+      >
+        Solicitar Pedido Personalizado
+      </a>
+    </div>
+  </div>
+</section>

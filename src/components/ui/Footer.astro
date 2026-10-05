@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import logoRosi from '@/assets/branding/logo-circular.png';
+---
+
+<footer class="bg-light-wisteria-950 py-8 px-4 sm:px-6 lg:px-8 border-t border-light-wisteria-800">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <!-- Left: Logo -->
+    <div class="flex items-center gap-3 text-white">
+      <div class="w-8 h-8 rounded-full overflow-hidden shadow-sm">
+        <Image
+          src={logoRosi}
+          alt="Logotipo de Floristeria ROSI"
+          width={64}
+          height={64}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <span class="text-xl font-medium tracking-wide italic font-serif">
+        Floristeria{' '}
+        <span class="font-sans not-italic text-sm tracking-[0.2em] uppercase ml-1">ROSI</span>
+      </span>
+    </div>
+
+    <!-- Center: Copyright -->
+    <div class="text-light-wisteria-700 text-xs font-medium tracking-wide">
+      &copy; {new Date().getFullYear()} Floristeria ROSI. Todos los derechos reservados.
+    </div>
+
+    <!-- Right: Social Links -->
+    <div class="flex items-center gap-4">
+      <!-- Facebook -->
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light-wisteria-400 hover:text-white transition-colors"
+        aria-label="Facebook"
+      >
+        <Icon name="mdi:facebook" class="w-5 h-5" />
+      </a>
+      <!-- Instagram -->
+      <a
+        href="https://instagram.com/flory.rossi"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light-wisteria-400 hover:text-white transition-colors"
+        aria-label="Instagram"
+      >
+        <Icon name="mdi:instagram" class="w-5 h-5" />
+      </a>
+      <!-- TikTok -->
+      <a
+        href="https://tiktok.com/@flori.rosi3"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light-wisteria-400 hover:text-white transition-colors"
+        aria-label="TikTok"
+      >
+        <Icon name="mdi:music-note" class="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</footer>

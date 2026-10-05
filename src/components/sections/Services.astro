@@ -1,0 +1,86 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Service {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const services: Service[] = [
+  {
+    title: 'Diseños Personalizados',
+    description:
+      'Armamos tu arreglo desde cero. Tú eliges las flores, colores y temática. Nosotros lo hacemos realidad.',
+    icon: 'lucide:palette',
+  },
+  {
+    title: 'Entregas Sorpresa',
+    description:
+      'Llevamos tu detalle de manera personal para crear un momento mágico e inolvidable al entregarlo.',
+    icon: 'lucide:party-popper',
+  },
+  {
+    title: 'Envíos Seguros',
+    description:
+      'Contamos con envíos rápidos y seguros a través de Uber Delivery para que tu pedido llegue intacto.',
+    icon: 'lucide:car',
+  },
+];
+---
+
+<section
+  id="servicios"
+  class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white/20 backdrop-blur-md border-y border-white/40 min-h-[calc(100vh-5rem)] flex items-center"
+>
+  <div class="max-w-7xl mx-auto w-full">
+    <!-- Header Section -->
+    <div class="text-center mb-12 lg:mb-16">
+      <h2
+        data-animate="fade-up"
+        style="opacity: 0;"
+        class="font-display text-4xl md:text-5xl lg:text-6xl text-light-wisteria-950 mb-6"
+      >
+        Cómo Trabajamos
+      </h2>
+      <div
+        data-animate="fade-up"
+        data-delay="0.2"
+        style="opacity: 0"
+        class="w-16 h-[2px] bg-light-wisteria-400 mx-auto mb-6"
+      ></div>
+      <p
+        data-animate="fade-up"
+        data-delay="0.4"
+        style="opacity: 0"
+        class="text-light-wisteria-700 text-base md:text-lg font-medium max-w-2xl mx-auto"
+      >
+        Más que flores, entregamos experiencias. Conoce los servicios que hacen que tu regalo sea
+        perfecto de principio a fin.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div
+          data-animate="fade-up"
+          data-delay={index * 0.2}
+          style="opacity: 0"
+          class="bg-white/40 backdrop-blur-sm border border-white rounded-[2rem] p-8 text-center shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center"
+        >
+          <!-- Icon -->
+          <div class="w-16 h-16 bg-light-wisteria-100 rounded-2xl flex items-center justify-center text-light-wisteria-600 mb-6 transform rotate-3 shadow-inner">
+            <Icon name={service.icon} class="w-8 h-8" />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-light-wisteria-950 font-bold text-lg mb-4 font-serif">{service.title}</h3>
+
+          <!-- Description -->
+          <p class="text-light-wisteria-700 text-sm leading-relaxed">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

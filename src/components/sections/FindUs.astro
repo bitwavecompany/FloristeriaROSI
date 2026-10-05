@@ -1,0 +1,157 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+const catalogImagesFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/catalog/**/*.{jpeg,jpg,png,webp}', { eager: true });
+const catalogImages = Object.values(catalogImagesFiles);
+---
+
+<section
+  id="encuentranos"
+  class="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden min-h-[calc(100vh-5rem)] flex items-center"
+>
+  <div class="max-w-7xl mx-auto relative z-10 w-full">
+    <div class="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl shadow-light-wisteria-900/5 min-h-[500px]">
+      <!-- Left Column: Location Info -->
+      <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-light-wisteria-50/50">
+        <div class="mb-4">
+          <span class="text-xs font-bold tracking-[0.2em] text-accent-light uppercase">
+            Visítanos
+          </span>
+        </div>
+
+        <h2
+          data-animate="fade-up"
+          style="opacity: 0"
+          class="text-4xl md:text-5xl lg:text-6xl text-light-wisteria-950 font-bold mb-6 leading-tight font-serif"
+        >
+          Ven a conocer <br />
+          <span class="italic font-medium text-accent-light">nuestro espacio.</span>
+        </h2>
+
+        <div class="space-y-6 mt-4">
+          <!-- Ubicacion -->
+          <div class="flex items-start" data-animate="fade-up" data-delay="0.2" style="opacity: 0">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              <Icon name="mdi:map-marker-outline" class="w-5 h-5" />
+            </div>
+            <div class="ml-4">
+              <p class="text-[11px] font-bold tracking-wider text-light-wisteria-950 uppercase mb-1">
+                Ubicación
+              </p>
+              <p class="text-light-wisteria-700 text-sm">
+                Av. Llira ñan y Jatun Huasi, frente al Tuti.
+              </p>
+            </div>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="flex items-start" data-animate="fade-up" data-delay="0.3" style="opacity: 0">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+              <Icon name="mdi:whatsapp" class="w-5 h-5" />
+            </div>
+            <div class="ml-4">
+              <p class="text-[11px] font-bold tracking-wider text-light-wisteria-950 uppercase mb-1">
+                WhatsApp
+              </p>
+              <p class="text-accent-light font-medium text-sm">0999636096</p>
+            </div>
+          </div>
+
+          <!-- Instagram -->
+          <div class="flex items-start" data-animate="fade-up" data-delay="0.4" style="opacity: 0">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">
+              <Icon name="mdi:instagram" class="w-5 h-5" />
+            </div>
+            <div class="ml-4">
+              <p class="text-[11px] font-bold tracking-wider text-light-wisteria-950 uppercase mb-1">
+                Instagram
+              </p>
+              <p class="text-light-wisteria-700 text-sm">@flory.rossi</p>
+            </div>
+          </div>
+
+          <!-- TikTok -->
+          <div class="flex items-start" data-animate="fade-up" data-delay="0.5" style="opacity: 0">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+              <Icon name="mdi:music-note" class="w-5 h-5" />
+            </div>
+            <div class="ml-4">
+              <p class="text-[11px] font-bold tracking-wider text-light-wisteria-950 uppercase mb-1">
+                TikTok
+              </p>
+              <p class="text-light-wisteria-700 text-sm">@flori.rosi3</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="mt-12" data-animate="fade-up" data-delay="0.6" style="opacity: 0">
+          <a
+            href="https://wa.me/593999636096"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-8 py-3 bg-light-wisteria-500 hover:bg-light-wisteria-600 text-white text-sm font-semibold rounded-full transition-colors w-max"
+          >
+            Hablar con un Florista
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Image Carousel with Overlay -->
+      <div class="w-full md:w-1/2 relative bg-lavender min-h-[300px] md:min-h-full overflow-hidden" id="contact-carousel">
+        {catalogImages.map((img, index) => (
+          <Image
+            src={img.default}
+            alt="Arreglo de Floristeria ROSI"
+            width={800}
+            height={1000}
+            class={`absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-opacity duration-1000 ease-in-out carousel-img ${index === 0 ? 'opacity-80' : 'opacity-0'}`}
+          />
+        ))}
+
+        <!-- Overlay Graphic -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 text-center px-4 pointer-events-none">
+          <!-- Logo Icon -->
+          <Icon name="lucide:flower-2" class="w-16 h-16 mb-4" />
+          <span class="text-3xl sm:text-4xl italic mb-3 shadow-sm font-serif">
+            Floristeria ROSI
+          </span>
+          <span class="text-[10px] tracking-[0.3em] font-medium uppercase drop-shadow-sm">
+            Excelencia en cada pétalo
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const images = document.querySelectorAll('#contact-carousel .carousel-img');
+    if (images.length <= 1) return;
+
+    let currentIndex = 0;
+
+    // We store the interval ID on the element to avoid duplicate intervals if page-load fires multiple times (ViewTransitions)
+    const carousel = document.getElementById('contact-carousel');
+    if (!carousel) return;
+    
+    if ((carousel as any)._carouselInterval) {
+      clearInterval((carousel as any)._carouselInterval);
+    }
+
+    (carousel as any)._carouselInterval = setInterval(() => {
+      // Fade out current
+      images[currentIndex].classList.remove('opacity-80');
+      images[currentIndex].classList.add('opacity-0');
+      
+      // Next index
+      currentIndex = (currentIndex + 1) % images.length;
+      
+      // Fade in next
+      images[currentIndex].classList.remove('opacity-0');
+      images[currentIndex].classList.add('opacity-80');
+    }, 4000); // Cambia de imagen cada 4 segundos
+  });
+</script>

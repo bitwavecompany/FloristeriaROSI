@@ -1,0 +1,167 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+import eternalBigFlower from '@/assets/catalog/eternal/big-flower.webp';
+import naturalAndPeople from '@/assets/catalog/natural/natural-and-people.webp';
+import specialSimple01 from '@/assets/catalog/special/simple-arrangement-01.webp';
+import specialSimple02 from '@/assets/catalog/special/simple-arrangement-02.webp';
+
+interface GalleryItem {
+  image: ImageMetadata;
+  title: string;
+  category: 'naturales' | 'eternas' | 'especiales';
+}
+
+const galleryItems: GalleryItem[] = [
+  {
+    image: naturalAndPeople,
+    title: 'Arreglo Natural',
+    category: 'naturales',
+  },
+  {
+    image: eternalBigFlower,
+    title: 'Flor Eterna Gigante',
+    category: 'eternas',
+  },
+  {
+    image: specialSimple01,
+    title: 'Caja Especial Simple',
+    category: 'especiales',
+  },
+  {
+    image: specialSimple02,
+    title: 'Detalle Especial',
+    category: 'especiales',
+  },
+];
+---
+
+<section
+  id="productos"
+  class="py-8 md:py12 px-4 sm:px-6 lg:px-8 bg-transparent min-h-[calc(100vh-5rem)] flex flex-col justify-center"
+>
+  <div class="max-w-7xl mx-auto w-full">
+    <!-- Header & Filters -->
+    <div class="flex flex-col mb-12 gap-8 items-center text-center">
+      <div class="max-w-2xl">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl text-light-wisteria-950 mb-4 font-display">
+          Nuestras Creaciones
+        </h2>
+        <p class="text-light-wisteria-700 text-base md:text-lg font-medium">
+          Explora nuestro catálogo. Haz clic en el diseño que más te guste para pedirlo por
+          WhatsApp.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3" id="gallery-filters">
+        <button
+          data-filter="all"
+          class="filter-btn active px-6 py-2 rounded-full text-sm font-semibold transition-colors bg-light-wisteria-950 text-white"
+        >
+          Todos
+        </button>
+        <button
+          data-filter="naturales"
+          class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-colors bg-light-wisteria-100 text-light-wisteria-800 hover:bg-light-wisteria-200"
+        >
+          Flores Naturales
+        </button>
+        <button
+          data-filter="eternas"
+          class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-colors bg-light-wisteria-100 text-light-wisteria-800 hover:bg-light-wisteria-200"
+        >
+          Flores Eternas
+        </button>
+        <button
+          data-filter="especiales"
+          class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition-colors bg-light-wisteria-100 text-light-wisteria-800 hover:bg-light-wisteria-200"
+        >
+          Arreglos Especiales
+        </button>
+      </div>
+    </div>
+
+    <!-- Images Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="gallery-grid">
+      {galleryItems.map((item) => (
+        <div
+          data-category={item.category}
+          class="gallery-item relative overflow-hidden rounded-[2rem] aspect-[4/5] shadow-sm hover:shadow-xl transition-all duration-500 group"
+        >
+          <Image
+            src={item.image}
+            alt={item.title}
+            width={600}
+            height={750}
+            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+          />
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-light-wisteria-950/90 via-light-wisteria-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <h3 class="text-white text-xl font-bold mb-3 font-serif">{item.title}</h3>
+            <a
+              href={`https://wa.me/593999636096?text=Hola,%20me%20encantó%20el%20arreglo:%20${encodeURIComponent(item.title)}.%20¿Podrían%20darme%20más%20información?`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center w-full bg-whatsapp hover:bg-whatsapp-hover text-white text-sm font-semibold py-3 rounded-full transition-colors shadow-lg"
+            >
+              <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
+              Pedir por WhatsApp
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+
+    if (!filterBtns.length || !items.length) return;
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Reset active state
+        filterBtns.forEach((b) => {
+          b.classList.remove('bg-light-wisteria-950', 'text-white');
+          b.classList.add(
+            'bg-light-wisteria-100',
+            'text-light-wisteria-800',
+            'hover:bg-light-wisteria-200',
+          );
+        });
+
+        // Set clicked button to active
+        btn.classList.add('bg-light-wisteria-950', 'text-white');
+        btn.classList.remove(
+          'bg-light-wisteria-100',
+          'text-light-wisteria-800',
+          'hover:bg-light-wisteria-200',
+        );
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        items.forEach((item) => {
+          const htmlItem = item as HTMLElement;
+          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            htmlItem.style.display = 'block';
+            setTimeout(() => {
+              htmlItem.style.opacity = '1';
+              htmlItem.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            htmlItem.style.opacity = '0';
+            htmlItem.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              htmlItem.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  });
+</script>

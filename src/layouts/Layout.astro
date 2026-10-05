@@ -1,0 +1,194 @@
+---
+import Seo from '@jdevalk/astro-seo-graph/Seo.astro';
+import { ClientRouter } from 'astro:transitions';
+import { Icon } from 'astro-icon/components';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" />
+    <ClientRouter />
+    <Seo
+      title={title || 'Floristeria ROSI - Flores para cada ocasión'}
+      description={
+        description ||
+        'Las mejores flores y arreglos florales en Floristeria ROSI. Descubre nuestra selección para todos los momentos especiales.'
+      }
+    />
+    <meta property="og:image" content="https://floristeriarosi.vercel.app/og-image.webp" />
+    <meta name="twitter:image" content="https://floristeriarosi.vercel.app/og-image.webp" />
+    
+    <!-- JSON-LD LocalBusiness / Florist Schema -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Florist",
+        "name": "Floristeria ROSI",
+        "image": "https://floristeriarosi.vercel.app/og-image.webp",
+        "@id": "https://floristeriarosi.vercel.app/",
+        "url": "https://floristeriarosi.vercel.app/",
+        "telephone": "+593999636096",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ecuador",
+          "addressCountry": "EC"
+        },
+        "priceRange": "$$",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      }
+    </script>
+
+    <!-- Google tag (gtag.js) con Partytown -->
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" is:inline></script>
+    <script type="text/partytown" is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // IMPORTANTE: Reemplazar G-XXXXXXXXXX por tu ID de Medición real
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+  </head>
+  <body class="bg-light-wisteria-50 text-light-wisteria-950 font-sans antialiased relative min-h-screen overflow-x-hidden">
+    <!-- Espejo / Ambient Gradients Background -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+      <!-- Gradient Blob 1 -->
+      <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-light-wisteria-300/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob"></div>
+      <!-- Gradient Blob 2 -->
+      <div class="absolute top-40 -right-20 w-[600px] h-[600px] bg-light-wisteria-200/60 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000"></div>
+      <!-- Gradient Blob 3 -->
+      <div class="absolute -bottom-40 left-20 w-[600px] h-[600px] bg-accent-light/20 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000"></div>
+      <!-- Glass Overlay to create the "Mirror" frosted look -->
+      <div class="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
+    </div>
+
+    <slot />
+
+    <!-- Floating WhatsApp Button -->
+    <a
+      href="https://wa.me/593999636096"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-6 right-6 z-50 bg-whatsapp hover:bg-whatsapp-hover text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:scale-110 transition-all duration-300 group"
+      aria-label="Chatear por WhatsApp"
+    >
+      <Icon
+        name="mdi:whatsapp"
+        class="w-8 h-8 transform group-hover:-rotate-12 transition-transform duration-300"
+      />
+    </a>
+
+    <script>
+      import { inView, animate } from 'motion';
+
+      function initAnimations() {
+        inView("[data-animate='fade-up']", (target) => {
+          animate(
+            target,
+            { y: [50, 0], opacity: [0, 1] },
+            {
+              duration: 0.6,
+              ease: [0.16, 1, 0.3, 1],
+              delay: Number(target.getAttribute('data-delay') || 0),
+            },
+          );
+          return () => animate(target, { y: 50, opacity: 0 }, { duration: 0 });
+        });
+
+        inView("[data-animate='slide-left']", (target) => {
+          animate(
+            target,
+            { x: [-100, 0], opacity: [0, 1] },
+            {
+              duration: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+              delay: Number(target.getAttribute('data-delay') || 0),
+            },
+          );
+          return () => animate(target, { x: -100, opacity: 0 }, { duration: 0 });
+        });
+
+        inView("[data-animate='slide-right']", (target) => {
+          animate(
+            target,
+            { x: [100, 0], opacity: [0, 1] },
+            {
+              duration: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+              delay: Number(target.getAttribute('data-delay') || 0),
+            },
+          );
+          return () => animate(target, { x: 100, opacity: 0 }, { duration: 0 });
+        });
+
+        inView("[data-animate='scale-up']", (target) => {
+          animate(
+            target,
+            { scale: [0.9, 1], opacity: [0, 1] },
+            {
+              duration: 0.6,
+              ease: [0.16, 1, 0.3, 1],
+              delay: Number(target.getAttribute('data-delay') || 0),
+            },
+          );
+          return () => animate(target, { scale: 0.9, opacity: 0 }, { duration: 0 });
+        });
+
+        inView("[data-animate='fade-in']", (target) => {
+          animate(
+            target,
+            { opacity: [0, 1] },
+            {
+              duration: 1.0,
+              ease: 'easeOut',
+              delay: Number(target.getAttribute('data-delay') || 0),
+            },
+          );
+          return () => animate(target, { opacity: 0 }, { duration: 0 });
+        });
+      }
+
+      document.addEventListener('astro:page-load', initAnimations);
+    </script>
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+      }
+      body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+      }
+    </style>
+  </body>
+</html>

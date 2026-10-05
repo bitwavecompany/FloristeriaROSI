@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import heroMain from '@/assets/ui/hero-main.webp';
+---
+
+<section class="relative bg-transparent min-h-[calc(100vh-5rem)] flex items-center pt-12 pb-4 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center py-8 lg:h-full">
+      <!-- Left Column: Text Content -->
+      <div class="sm:text-center lg:text-left z-10" data-animate="slide-left" style="opacity: 0">
+        <!-- Overline -->
+        <div class="flex items-center justify-center lg:justify-start mb-6">
+          <div class="w-10 h-[1px] bg-accent-light mr-4"></div>
+          <p class="text-xs font-bold tracking-[0.2em] text-light-wisteria-600 uppercase">
+            Flores con intención
+          </p>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-5xl md:text-6xl lg:text-7xl leading-none tracking-tight text-light-wisteria-950 mb-6 font-serif">
+          <span class="block">Detalles que</span>
+          <span class="block text-accent-light italic font-medium mt-1">florecen</span>
+          <span class="block mt-1">contigo.</span>
+        </h1>
+
+        <!-- Body Text -->
+        <p class="text-light-wisteria-800 text-lg sm:text-xl max-w-md mx-auto lg:mx-0 font-light mb-10 leading-relaxed">
+          Creamos arreglos florales llenos de vida para acompañar tus momentos más bonitos.
+        </p>
+
+        <!-- Button -->
+        <div class="sm:flex sm:justify-center lg:justify-start">
+          <a
+            href="#productos"
+            class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-sm font-semibold rounded text-white bg-light-wisteria-700 hover:bg-light-wisteria-900 transition-colors uppercase tracking-widest group"
+          >
+            Descubre nuestros diseños
+            <Icon
+              name="lucide:arrow-up-right"
+              class="ml-2 w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Image and Decorative Elements -->
+      <div
+        class="relative lg:ml-auto w-full max-w-md mx-auto lg:max-w-none mt-12 lg:mt-0 flex flex-col justify-center items-center lg:h-full overflow-hidden p-4"
+        data-animate="slide-right"
+        style="opacity: 0"
+        data-delay="0.1"
+      >
+
+
+        <!-- Image Container (Polaroid Style) -->
+        <div class="relative bg-white p-3 pb-10 sm:p-4 sm:pb-12 shadow-xl rounded-sm transform rotate-3 z-10 border border-gray-100 w-auto inline-block">
+          <div class="overflow-hidden rounded max-h-[50vh] lg:max-h-[65vh] aspect-[4/5]">
+            <!-- Actual Photo -->
+            <Image
+              src={heroMain}
+              alt="Arreglo floral estrella de Floristeria ROSI"
+              width={800}
+              height={1000}
+              class="object-cover w-full h-full"
+              fetchpriority="high"
+            />
+          </div>
+          <!-- Badge -->
+          <div class="absolute -bottom-6 left-2 sm:-left-6 bg-blush text-white rounded-full w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center shadow-lg transform -rotate-12 border-4 border-light-wisteria-50 z-20">
+            <span class="text-center font-serif italic text-sm sm:text-lg leading-tight px-2 sm:px-4">
+              hecho
+              <br />
+              con amor
+            </span>
+          </div>
+        </div>
+
+        <!-- Decorative background shapes could go here -->
+      </div>
+    </div>
+  </div>
+</section>

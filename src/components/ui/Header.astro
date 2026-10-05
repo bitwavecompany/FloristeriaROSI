@@ -1,0 +1,150 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import logoRosi from '@/assets/branding/logo-circular.png';
+---
+
+<header class="w-full fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-light-wisteria-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+    <!-- Logo Section -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-12 h-12 rounded-full overflow-hidden shadow-sm border border-light-wisteria-100 group-hover:scale-105 transition-transform duration-300">
+        <Image
+          src={logoRosi}
+          alt="Logotipo de Floristeria ROSI"
+          width={96}
+          height={96}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div>
+        <h2 class="text-light-wisteria-950 font-bold text-lg leading-none font-serif">
+          Floristeria ROSI
+        </h2>
+        <p class="text-[10px] text-light-wisteria-600 font-semibold tracking-wider uppercase mt-1">
+          Arreglos para toda ocasión
+        </p>
+      </div>
+    </a>
+
+    <!-- Navigation Links (Desktop) -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a
+        href="#"
+        class="text-sm font-medium text-light-wisteria-800 hover:text-light-wisteria-950 transition-colors"
+      >
+        Inicio
+      </a>
+      <a
+        href="#productos"
+        class="text-sm font-medium text-light-wisteria-800 hover:text-light-wisteria-950 transition-colors"
+      >
+        Nuestras Creaciones
+      </a>
+      <a
+        href="#servicios"
+        class="text-sm font-medium text-light-wisteria-800 hover:text-light-wisteria-950 transition-colors"
+      >
+        Servicios
+      </a>
+      <a
+        href="#encuentranos"
+        class="text-sm font-medium text-light-wisteria-800 hover:text-light-wisteria-950 transition-colors"
+      >
+        Contacto
+      </a>
+    </nav>
+
+    <!-- Call to Action (Desktop) -->
+    <div class="hidden md:flex items-center">
+      <a
+        href="#encuentranos"
+        class="bg-light-wisteria-600 hover:bg-light-wisteria-700 text-white text-sm font-semibold py-2 px-6 rounded-full transition-colors shadow-sm"
+      >
+        Pedir ahora
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex items-center justify-center p-2 text-light-wisteria-800 focus:outline-none"
+    >
+      <Icon name="lucide:menu" id="icon-menu" class="w-6 h-6" />
+      <Icon name="lucide:x" id="icon-close" class="w-6 h-6 hidden" />
+    </button>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-white/95 backdrop-blur-md border-t border-light-wisteria-100 px-4 py-6 shadow-lg"
+  >
+    <nav class="flex flex-col gap-6 items-center">
+      <a
+        href="#"
+        class="mobile-link text-base font-medium text-light-wisteria-800 hover:text-light-wisteria-950"
+      >
+        Inicio
+      </a>
+      <a
+        href="#productos"
+        class="mobile-link text-base font-medium text-light-wisteria-800 hover:text-light-wisteria-950"
+      >
+        Nuestras Creaciones
+      </a>
+      <a
+        href="#servicios"
+        class="mobile-link text-base font-medium text-light-wisteria-800 hover:text-light-wisteria-950"
+      >
+        Servicios
+      </a>
+      <a
+        href="#encuentranos"
+        class="mobile-link text-base font-medium text-light-wisteria-800 hover:text-light-wisteria-950"
+      >
+        Contacto
+      </a>
+      <a
+        href="#encuentranos"
+        class="mobile-link mt-4 bg-light-wisteria-600 text-white text-sm font-semibold py-3 px-8 rounded-full shadow-sm"
+      >
+        Pedir ahora
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    const links = document.querySelectorAll('.mobile-link');
+
+    if (!btn || !menu) return;
+
+    const toggleMenu = () => {
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        iconMenu?.classList.add('hidden');
+        iconClose?.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        iconClose?.classList.add('hidden');
+        iconMenu?.classList.remove('hidden');
+      }
+    };
+
+    btn.addEventListener('click', toggleMenu);
+    links.forEach((link) =>
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconClose?.classList.add('hidden');
+        iconMenu?.classList.remove('hidden');
+      }),
+    );
+  });
+</script>
