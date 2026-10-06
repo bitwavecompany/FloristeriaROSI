@@ -13,9 +13,9 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   integrations: [
-    tailwind(), 
-    icon(), 
-    sitemap(), 
+    tailwind(),
+    icon(),
+    sitemap(),
     partytown({
       config: {
         forward: ['dataLayer.push'],
@@ -25,8 +25,8 @@ export default defineConfig({
       validateH1: true,
       validateUniqueMetadata: true,
       validateImageAlt: true,
-      validateInternalLinks: true
-    })
+      validateInternalLinks: true,
+    }),
   ],
   image: {
     domains: ['images.unsplash.com'],

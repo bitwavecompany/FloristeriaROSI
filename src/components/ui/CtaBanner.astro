@@ -25,6 +25,7 @@ import { Icon } from 'astro-icon/components';
         href="https://wa.me/593999636096?text=Hola,%20quisiera%20solicitar%20un%20pedido%20personalizado."
         target="_blank"
         rel="noopener noreferrer"
+        id="btn-custom-order"
         class="inline-flex items-center justify-center px-8 py-3 bg-light-wisteria-950 hover:bg-light-wisteria-900 text-white text-sm font-semibold rounded-full transition-colors"
       >
         Solicitar Pedido Personalizado
@@ -32,3 +33,19 @@ import { Icon } from 'astro-icon/components';
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const btnCustom = document.getElementById('btn-custom-order');
+    if (btnCustom) {
+      btnCustom.addEventListener('click', () => {
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'generate_lead', {
+            event_category: 'WhatsApp',
+            event_label: 'Banner_Pedido_Personalizado',
+          });
+        }
+      });
+    }
+  });
+</script>

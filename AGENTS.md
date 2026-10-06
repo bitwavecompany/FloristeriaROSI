@@ -7,7 +7,8 @@
 
 ## 1. Overview
 
-AI agents working in this repository act as **co-developers**: implementing new features, creating UI components, and managing the Astro framework. 
+AI agents working in this repository act as **co-developers**: implementing new features, creating UI components, and managing the Astro framework.
+
 > For the complete Tech Stack, Architecture, and Business Logic (The Lookbook concept), always read `README.md` first. Do not duplicate that information here.
 
 ---
@@ -34,7 +35,7 @@ astro dev logs
 - **Astro Components**: Use `.astro` files for UI components whenever possible. Rely on Astro's Islands Architecture if client-side interactivity is required.
 - **Styling**: Use Tailwind CSS for all styling, utilizing the configuration defined in `tailwind.config.ts`.
 - **Architecture (The Lookbook)**: This site operates as a digital Lookbook/Catalog without explicit pricing. All CTAs drive users directly to WhatsApp.
-- **Imports & Assets**: 
+- **Imports & Assets**:
   - Use the `@/` path alias configured in `tsconfig.json` for all internal imports (e.g., `import logo from '@/assets/branding/logo.png'`).
   - Catalog images must maintain a strict `4:5` vertical aspect ratio.
   - When batch loading images, use Vite's `import.meta.glob('/src/assets/...', { eager: true })` instead of `Astro.glob`.

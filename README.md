@@ -39,7 +39,7 @@
 - **Direct WhatsApp Funnel:** Products are linked directly to WhatsApp chats, optimizing local sales conversions.
 - **Visual Performance:** On-the-fly optimized and responsive images via Astro's `<Image />` component.
 - **Built-in Local SEO:** Injects `LocalBusiness` and `Florist` JSON-LD schemas to dominate Google Maps and local search results.
-- **Off-Thread Analytics:** Google Analytics (GA4) runs entirely in a Web Worker using *Partytown*, tracking metrics without impacting page load times.
+- **Off-Thread Analytics:** Google Analytics (GA4) runs entirely in a Web Worker using _Partytown_, tracking metrics without impacting page load times.
 
 ---
 
@@ -85,16 +85,19 @@ Astro relies on file-based routing. Here is the core topology:
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/bitwavecompany/FloristeriaROSI.git
    cd FloristeriaROSI
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
-   *(Note: The project uses an `.npmrc` file with `legacy-peer-deps=true` to automatically resolve strict Astro/Tailwind peer dependency constraints).*
+
+   _(Note: The project uses an `.npmrc` file with `legacy-peer-deps=true` to automatically resolve strict Astro/Tailwind peer dependency constraints)._
 
 3. Start the development server:
    ```bash
@@ -108,27 +111,31 @@ Astro relies on file-based routing. Here is the core topology:
 
 This project enforces a strict quality pipeline to ensure code integrity before deployment.
 
-| Command                    | Description                                                                 |
-| -------------------------- | --------------------------------------------------------------------------- |
-| `npm run dev`              | Starts the local dev server with Hot Module Replacement (HMR).              |
-| `npm run preview`          | Serves the compiled build locally to preview the final result.              |
-| `npm run format`           | Formats codebase and sorts Tailwind classes using Prettier.                 |
-| `npm run lint`             | Scans code for bad practices and syntax errors using ESLint.                |
-| `npm run typecheck`        | Strictly verifies TypeScript and Astro component props.                     |
-| **`npm run build:strict`** | **Recommended before deploy.** Runs lint, typecheck, and final build.       |
+| Command                    | Description                                                           |
+| -------------------------- | --------------------------------------------------------------------- |
+| `npm run dev`              | Starts the local dev server with Hot Module Replacement (HMR).        |
+| `npm run preview`          | Serves the compiled build locally to preview the final result.        |
+| `npm run format`           | Formats codebase and sorts Tailwind classes using Prettier.           |
+| `npm run lint`             | Scans code for bad practices and syntax errors using ESLint.          |
+| `npm run typecheck`        | Strictly verifies TypeScript and Astro component props.               |
+| **`npm run build:strict`** | **Recommended before deploy.** Runs lint, typecheck, and final build. |
 
 ---
 
 ## 📈 SEO & Analytics
 
 ### Technical SEO
+
 The site achieves a **100/100 SEO score** through:
+
 - **`Layout.astro`** dynamically injecting `Florist` JSON-LD schema with address, phone numbers, and operating hours for the Google Local Pack.
 - Automatic Open Graph (`og:image`) and Twitter Cards metadata pointing to `public/og-image.webp` for rich social media sharing.
 - Strict compile-time validation via `astro-seo-graph` (ensuring unique H1s, internal link integrity, and alt texts).
 
 ### Analytics (Google Analytics)
+
 Tracking is handled securely without blocking the main thread:
+
 1. Powered by **Partytown**.
 2. To update the tracking ID, open `src/layouts/Layout.astro`.
 3. Locate the `<script type="text/partytown">` tag and replace `G-XXXXXXXXXX` with your official Measurement ID.

@@ -104,7 +104,8 @@ const galleryItems: GalleryItem[] = [
               href={`https://wa.me/593999636096?text=Hola,%20me%20encantó%20el%20arreglo:%20${encodeURIComponent(item.title)}.%20¿Podrían%20darme%20más%20información?`}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center w-full bg-whatsapp hover:bg-whatsapp-hover text-white text-sm font-semibold py-3 rounded-full transition-colors shadow-lg"
+              class="track-catalog-whatsapp inline-flex items-center justify-center w-full bg-whatsapp hover:bg-whatsapp-hover text-white text-sm font-semibold py-3 rounded-full transition-colors shadow-lg"
+              data-product={item.title}
             >
               <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
               Pedir por WhatsApp
@@ -145,6 +146,14 @@ const galleryItems: GalleryItem[] = [
 
         const filterValue = btn.getAttribute('data-filter');
 
+        // RASTREO: Filtros de categoría
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'search', {
+            event_category: 'Interacción',
+            search_term: filterValue,
+          });
+        }
+
         items.forEach((item) => {
           const htmlItem = item as HTMLElement;
           if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
@@ -161,6 +170,22 @@ const galleryItems: GalleryItem[] = [
             }, 300);
           }
         });
+      });
+    });
+
+    // RASTREO: Botones individuales del catálogo
+    const catalogBtns = document.querySelectorAll('.track-catalog-whatsapp');
+    catalogBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const productName =
+          (e.currentTarget as HTMLElement).getAttribute('data-product') || 'Desconocido';
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'select_item', {
+            event_category: 'Ventas',
+            event_label: productName,
+            item_name: productName,
+          });
+        }
       });
     });
   });

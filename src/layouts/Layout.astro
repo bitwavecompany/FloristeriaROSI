@@ -22,8 +22,15 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+    />
     <ClientRouter />
     <Seo
       title={title || 'Floristeria ROSI - Flores para cada ocasión'}
@@ -34,7 +41,7 @@ const { title, description } = Astro.props;
     />
     <meta property="og:image" content="https://floristeriarosi.vercel.app/og-image.webp" />
     <meta name="twitter:image" content="https://floristeriarosi.vercel.app/og-image.webp" />
-    
+
     <!-- JSON-LD LocalBusiness / Florist Schema -->
     <script type="application/ld+json" is:inline>
       {
@@ -53,25 +60,24 @@ const { title, description } = Astro.props;
         "priceRange": "$$",
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-          ],
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           "opens": "09:00",
           "closes": "18:00"
         }
       }
     </script>
-
     <!-- Google tag (gtag.js) con Partytown -->
-    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-8SLY0YQPW5" is:inline></script>
+    <script
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8SLY0YQPW5"
+      is:inline
+    ></script>
     <script type="text/partytown" is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'G-8SLY0YQPW5');
@@ -189,5 +195,20 @@ const { title, description } = Astro.props;
         position: relative;
       }
     </style>
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        const floatingBtn = document.querySelector('a[aria-label="Chatear por WhatsApp"]');
+        if (floatingBtn) {
+          floatingBtn.addEventListener('click', () => {
+            if (typeof (window as any).gtag === 'function') {
+              (window as any).gtag('event', 'generate_lead', {
+                event_category: 'WhatsApp',
+                event_label: 'Boton_Flotante_Global',
+              });
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
